@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @call.name %>
+</p>
+
+<p>
+  <strong>Round:</strong>
+  <%= @call.round_id %>
+</p>
+
+<%= link_to 'Edit', edit_call_path(@call) %> |
+<%= link_to 'Back', calls_path %>
