@@ -15,6 +15,8 @@ export default class extends Controller {
         received: this.cableReceived.bind(this)
       }
     )
+
+    this.updateCssVariables()
   }
 
   cableConnected() {
@@ -35,8 +37,16 @@ export default class extends Controller {
       const textNode = document.createTextNode(data.name)
       node.dataset.callId = data.id
       node.dataset.target = "round.call"
+      node.classList.add("marquee-item")
       node.appendChild(textNode)
       this.listTarget.appendChild(node)
     }
+    this.updateCssVariables()
+  }
+
+  updateCssVariables() {
+    this.element.style.setProperty("--screen-width", this.element.offsetWidth)
+    this.element.style.setProperty("--marquee-width", this.listTarget.offsetWidth)
+    this.element.style.setProperty("--duration", this.data.get("duration"))
   }
 }

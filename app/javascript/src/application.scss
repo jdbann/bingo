@@ -138,3 +138,43 @@
     ;
   }
 }
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.marquee {
+  @apply
+    bg-blue-500
+    text-white
+    text-5xl
+    overflow-hidden
+  ;
+}
+
+.marquee-contents {
+  @apply
+    whitespace-no-wrap
+    inline-block
+  ;
+
+  animation-duration: calc(var(--marquee-width) / var(--screen-width) * var(--duration) * 1s);
+  animation-iteration-count: infinite;
+  animation-name: scroll-left;
+  animation-timing-function: linear;
+  padding-left: calc(var(--screen-width) * 1px);
+}
+
+.marquee-item {
+  @apply
+    py-4
+    px-20
+    inline-block
+  ;
+}
