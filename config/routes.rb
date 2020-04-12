@@ -4,4 +4,6 @@ Rails.application.routes.draw do
 
     get :screen, on: :member
   end
+
+  root "rounds#index"
 end
