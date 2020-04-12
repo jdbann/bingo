@@ -1,5 +1,12 @@
 <%= content_tag :h1, @round.name, class: "heading" %>
 
+<div class="row row-collapsed">
+  <span class="p-3">URL for OBS:</span>
+  <pre class="p-3 bg-gray-200 flex-1 border-l"><%= screen_round_url @round %></pre>
+</div>
+
+<hr class="mb-4"/>
+
 <% @round.calls.order(:name).each do |call| %>
   <%= content_tag :div, id: "call-#{call.id}", class: "row #{"row-muted" if call.hidden}" do %>
     <%= link_to call_path(call, call: { hidden: !call.hidden }), method: :put do %>
