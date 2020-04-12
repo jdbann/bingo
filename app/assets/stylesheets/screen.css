@@ -1,0 +1,12 @@
+body {
+  font-size: 72px;
+}
+
+ul {
+  width: 20000px;
+}
+
+li {
+  float: left;
+  margin-left: 40px;
+}

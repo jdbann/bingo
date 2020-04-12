@@ -13,18 +13,26 @@
 <table>
   <thead>
     <tr>
+      <th>
       <th>Name</th>
       <th colspan="3"></th>
     </tr>
   </thead>
 
   <tbody>
-    <% @round.calls.each do |call| %>
-      <tr>
+    <% @round.calls.order(:name).each do |call| %>
+      <%= content_tag :tr, id: "call-#{call.id}" do %>
+        <td>
+          <% if call.hidden %>
+            <%= link_to 'Show', call_path(call, call: { hidden: false }), method: :put %>
+          <% else %>
+            <%= link_to 'Hide', call_path(call, call: { hidden: true }), method: :put %>
+          <% end %>
+        </td>
         <td><%= call.name %></td>
         <td><%= link_to 'Edit', edit_call_path(call) %></td>
         <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+      <% end %>
     <% end %>
   </tbody>
 </table>

@@ -61,6 +61,11 @@ class RoundsController < ApplicationController
     end
   end
 
+  def screen
+    @round = Round.find(params[:id])
+    render :screen, layout: "layouts/screen"
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_round

@@ -30,6 +30,7 @@ class CallsController < ApplicationController
 
     respond_to do |format|
       if @call.save
+        RoundChannel.broadcast_to(round, @call.attributes)
         format.html { redirect_to round, notice: 'Call was successfully created.' }
         format.json { render :show, status: :created, location: @call }
       else
@@ -44,7 +45,8 @@ class CallsController < ApplicationController
   def update
     respond_to do |format|
       if @call.update(call_params)
-        format.html { redirect_to @call, notice: 'Call was successfully updated.' }
+        RoundChannel.broadcast_to(@call.round, @call.attributes)
+        format.html { redirect_to @call.round, notice: 'Call was successfully updated.' }
         format.json { render :show, status: :ok, location: @call }
       else
         format.html { render :edit }
@@ -71,6 +73,6 @@ class CallsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def call_params
-      params.require(:call).permit(:name, :round_id)
+      params.require(:call).permit(:name, :round_id, :hidden)
     end
 end
