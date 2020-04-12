@@ -12,19 +12,19 @@
 
   <body class="bg-gray-200">
     <div class="bg-white mb-4 shadow-lg">
-      <div class="container mx-auto p-3">
+      <div class="max-w-screen-lg mx-auto p-3">
         <%= link_to "Bingo", rounds_path %>
       </div>
     </div>
 
-    <div class="container mx-auto p-3">
+    <div class="max-w-screen-lg mx-auto md:p-3">
       <% if notice %>
         <div class="bg-blue-100 text-blue-700 px-4 py-3 rounded relative mb-4 shadow-lg" role="alert">
           <%= notice %>
         </div>
       <% end %>
 
-      <div class="bg-white rounded-lg p-4 shadow-lg">
+      <div class="bg-white md:rounded-lg p-4 shadow-lg">
         <%= yield %>
       </div>
     </div>

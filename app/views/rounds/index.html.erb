@@ -2,7 +2,7 @@
 
 <% @rounds.each do |round| %>
   <div class="row">
-    <%= link_to round.name, round, class: "row-title row-title-link" %>
+    <%= link_to round.name, round, class: "row-title row-title-link p-3" %>
 
     <div>
       <%= link_to 'Edit', edit_round_path(round), class: "row-button row-button-edit" %>
@@ -12,5 +12,5 @@
 <% end %>
 
 <div class="row row-muted">
-  <%= link_to "+ New Round", new_round_path, class: "text-lg" %>
+  <%= link_to "+ New Round", new_round_path, class: "row-title" %>
 </div>
