@@ -1,42 +1,19 @@
-<p id="notice"><%= notice %></p>
+<%= content_tag :h1, @round.name, class: "heading" %>
 
-<p>
-  <strong>Name:</strong>
-  <%= @round.name %>
-</p>
-
-<%= link_to 'Edit', edit_round_path(@round) %> |
-<%= link_to 'Back', rounds_path %>
-
-<h2>Calls</h2>
-
-<table>
-  <thead>
-    <tr>
-      <th>
-      <th>Name</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @round.calls.order(:name).each do |call| %>
-      <%= content_tag :tr, id: "call-#{call.id}" do %>
-        <td>
-          <% if call.hidden %>
-            <%= link_to 'Show', call_path(call, call: { hidden: false }), method: :put %>
-          <% else %>
-            <%= link_to 'Hide', call_path(call, call: { hidden: true }), method: :put %>
-          <% end %>
-        </td>
-        <td><%= call.name %></td>
-        <td><%= link_to 'Edit', edit_call_path(call) %></td>
-        <td><%= link_to 'Destroy', call, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
+<% @round.calls.order(:name).each do |call| %>
+  <%= content_tag :div, id: "call-#{call.id}", class: "row #{"row-muted" if call.hidden}" do %>
+    <%= link_to call_path(call, call: { hidden: !call.hidden }), method: :put do %>
+      <%= content_tag :span, call.name, class: "row-title" %>
+      <%= content_tag :span, (call.hidden ? "Show" : "Hide"), class: "row-detail" %>
     <% end %>
-  </tbody>
-</table>
 
-<br>
+    <div>
+      <%= link_to 'Edit', edit_call_path(call), class: "row-button row-button-edit" %>
+      <%= link_to 'Delete', call, method: :delete, data: { confirm: 'Are you sure?' }, class: "row-button row-button-delete" %>
+    </div>
+  <% end %>
+<% end %>
 
-<%= link_to 'New Call', new_round_call_path(@round) %>
+<div class="row row-muted">
+  <%= link_to "+ New Call", new_round_call_path(@round), class: "row-title" %>
+</div>

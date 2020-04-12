@@ -1,0 +1,140 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+.heading {
+  @apply
+    mb-4
+    text-5xl
+  ;
+}
+
+.row {
+  @apply
+    flex
+    justify-between
+    mb-3
+    p-3
+    rounded
+    shadow-md
+  ;
+}
+
+.row-muted {
+  @apply
+    text-gray-500
+  ;
+}
+
+.row-title {
+  @apply
+    text-lg
+  ;
+}
+
+.row-title-link {
+  @apply
+    text-blue-700
+  ;
+}
+
+.row-detail {
+  @apply
+    text-sm
+  ;
+}
+
+.row-button {
+  @apply
+    text-sm
+    rounded-full
+    py-1
+    px-3
+    mx-1
+    shadow
+  ;
+}
+
+.row-button-edit {
+  @apply
+    text-blue-700
+    bg-blue-100
+  ;
+}
+
+.row-button-delete {
+  @apply
+    text-red-700
+    bg-red-100
+  ;
+}
+
+.field {
+  @apply
+    mb-4
+  ;
+}
+
+.field-label {
+  @apply
+    block
+    text-gray-700
+    text-sm
+    font-bold
+    mb-2
+  ;
+}
+
+.field-input {
+  @apply
+    shadow
+    appearance-none
+    border
+    rounded
+    w-full
+    py-2
+    px-3
+    text-gray-700
+    leading-tight
+  ;
+
+  &:focus {
+    @apply
+      outline-none
+      shadow-outline
+    ;
+  }
+}
+
+.form-actions {
+  @apply
+    flex
+    items-center
+    justify-between
+  ;
+}
+
+.submit {
+  @apply
+    bg-blue-500
+    text-white
+    font-bold
+    py-2
+    px-4
+    rounded
+  ;
+
+  &:hover {
+    @apply
+      bg-blue-700
+      cursor-pointer
+    ;
+  }
+
+  &:focus {
+    @apply
+      outline-none
+      shadow-outline
+    ;
+  }
+}
