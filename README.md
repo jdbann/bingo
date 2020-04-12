@@ -1,24 +1,27 @@
-# README
+# Bingo
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Shows a scrolling marquee of calls from a round. For embedding in a [browser
+source] using [OBS].
 
-Things you may want to cover:
+[OBS]: https://obsproject.com
+[browser source]: https://obsproject.com/wiki/Sources-Guide#browsersource
 
-* Ruby version
+## Requirements
 
-* System dependencies
+- Ruby 2.6.4
+- Yarn
+- Postgres
 
-* Configuration
+## Setup
 
-* Database creation
+```
+$ bin/setup
+```
 
-* Database initialization
+## Testing
 
-* How to run the test suite
+Tests are handled by rspec:
 
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+```
+$ rails spec
+```
