@@ -1,4 +1,5 @@
 <%= content_tag :ul, data: { controller: "round", target: "round.list", "round-id": @round.id } do %>
+  <li data-target="round.status">Connecting</li>
   <% @round.calls.visible.each do |call| %>
     <%= content_tag :li, call.name, data: { target: "round.call", "call-id": call.id } %>
   <% end %>

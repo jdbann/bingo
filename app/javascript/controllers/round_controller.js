@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
 
 export default class extends Controller {
-  static targets = ['call', 'list'];
+  static targets = ['call', 'list', 'status'];
 
   connect() {
     this.roundId = this.element.dataset.roundId
@@ -18,6 +18,7 @@ export default class extends Controller {
   }
 
   cableConnected() {
+    this.statusTarget.style.display = "none"
   }
 
   cableReceived(data) {

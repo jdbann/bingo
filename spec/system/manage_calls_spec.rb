@@ -1,10 +1,6 @@
 require "rails_helper"
 
 RSpec.describe "ManageCalls", type: :system do
-  before do
-    driven_by(:selenium_chrome)
-  end
-
   it "allows you to create calls" do
     round = Round.create(name: "Test Round")
     visit round_path(round)
@@ -16,17 +12,19 @@ RSpec.describe "ManageCalls", type: :system do
 
   it "shows calls on round source screen" do
     round = Round.create(name: "Test Round")
-    Call.create(name: "Red Ute", round: round)
+    Call.create(name: "Red Ute", round: round, hidden: false)
     visit screen_round_path(round)
+    wait_for_connection
     expect(page).to have_content("Red Ute")
   end
 
-  it "adds new calls to source screen automatically" do
+  it "doesn't add new calls to source screen automatically" do
     round = Round.create(name: "Test Round")
     visit round_path(round)
 
     using_session "screen" do
       visit screen_round_path(round)
+      wait_for_connection
       expect(page).not_to have_content "Red Ute"
     end
 
@@ -35,7 +33,7 @@ RSpec.describe "ManageCalls", type: :system do
     click_on "Create Call"
 
     using_session "screen" do
-      expect(page).to have_content "Red Ute"
+      expect(page).not_to have_content "Red Ute"
     end
   end
 
@@ -46,6 +44,7 @@ RSpec.describe "ManageCalls", type: :system do
 
     using_session "screen" do
       visit screen_round_path(round)
+      wait_for_connection
       expect(page).not_to have_content "Red Ute"
     end
 
@@ -64,5 +63,9 @@ RSpec.describe "ManageCalls", type: :system do
     using_session "screen" do
       expect(page).not_to have_content "Red Ute"
     end
+  end
+
+  def wait_for_connection
+    page.has_no_content?("Connecting")
   end
 end
