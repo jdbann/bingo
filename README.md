@@ -25,3 +25,14 @@ Tests are handled by rspec:
 ```
 $ rails spec
 ```
+
+## Linting
+
+Run linting before merging. Linting for ruby, js and scss is setup:
+
+```
+$ rails lint      # Runs lint:ruby, lint:js and lint:scss
+$ rails lint:ruby # Runs rubocop
+$ rails lint:js   # Runs eslint
+$ rails lint:scss # Rubs scss-lint
+```
