@@ -33,15 +33,21 @@ export default class extends Controller {
         }
       })
     } else {
-      const node = document.createElement("li")
-      const textNode = document.createTextNode(data.name)
-      node.dataset.callId = data.id
-      node.dataset.target = "round.call"
-      node.classList.add("marquee-item")
-      node.appendChild(textNode)
-      this.listTarget.appendChild(node)
+      if (this.callTargets.find(call => call.dataset.callId == data.id) == null) {
+        this.addCall(data)
+      }
     }
     this.updateCssVariables()
+  }
+
+  addCall({ id, name }) {
+    const node = document.createElement("li")
+    const textNode = document.createTextNode(name)
+    node.dataset.callId = id
+    node.dataset.target = "round.call"
+    node.classList.add("marquee-item")
+    node.appendChild(textNode)
+    this.listTarget.appendChild(node)
   }
 
   updateCssVariables() {
