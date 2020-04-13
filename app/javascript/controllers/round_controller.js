@@ -35,13 +35,34 @@ export default class extends Controller {
   }
 
   addCall({ id, name }) {
-    const node = document.createElement("li")
+    const announceDuration = parseFloat(this.data.get("announceDuration"))
     const textNode = document.createTextNode(name)
-    node.dataset.callId = id
-    node.dataset.target = "round.call"
-    node.classList.add("marquee-item")
-    node.appendChild(textNode)
-    this.listTarget.appendChild(node)
+
+    const marqueeNode = document.createElement("li")
+    marqueeNode.dataset.callId = id
+    marqueeNode.dataset.target = "round.call"
+    marqueeNode.classList.add("marquee-item")
+    marqueeNode.appendChild(textNode)
+    this.listTarget.appendChild(marqueeNode)
+
+    const overlayNode = document.createElement("div")
+    overlayNode.style.setProperty("--announce-duration", announceDuration)
+    overlayNode.classList.add("marquee-overlay")
+    overlayNode.appendChild(marqueeNode)
+    this.element.appendChild(overlayNode)
+
+    setTimeout(() => {
+      this.listTarget.classList.add("marquee-stopped")
+      window.requestAnimationFrame(() => {
+        window.requestAnimationFrame(() => {
+          this.listTarget.classList.remove("marquee-stopped")
+        })
+      })
+    }, announceDuration * 900)
+
+    setTimeout(() => {
+      this.element.removeChild(overlayNode)
+    }, announceDuration * 1000)
   }
 
   removeCall({ id }) {

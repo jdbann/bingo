@@ -175,12 +175,46 @@
   padding-left: calc(var(--screen-width) * 1px);
 }
 
+.marquee-stopped {
+  animation: none;
+}
+
 .marquee-item {
   @apply
     py-4
     px-20
     inline-block
   ;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 100%;
+  }
+
+  100% {
+    opacity: 100%;
+  }
+}
+
+.marquee-overlay {
+  @apply
+    absolute
+    top-0
+    bg-blue-500
+    w-full
+    opacity-0
+  ;
+
+  animation-direction: alternate;
+  animation-duration: calc(var(--announce-duration) * 0.5s);
+  animation-iteration-count: 2;
+  animation-name: fade-in;
+  animation-timing-function: linear;
 }
 
 .hidden-sm {

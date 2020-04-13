@@ -1,4 +1,4 @@
-<%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": 20 }, class: "marquee" do %>
+<%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": 20, "round-announce-duration": 5 }, class: "marquee" do %>
   <ul class="marquee-contents" data-target="round.list">
     <li data-target="round.status" class="marquee-item">Connecting</li>
     <% @round.calls.visible.each do |call| %>
