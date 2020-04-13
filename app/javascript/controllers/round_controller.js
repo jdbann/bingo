@@ -46,10 +46,11 @@ export default class extends Controller {
     this.listTarget.appendChild(marqueeNode)
 
     const overlayNode = document.createElement("div")
-    overlayNode.style.setProperty("--announce-duration", announceDuration)
     overlayNode.classList.add("marquee-overlay")
     overlayNode.appendChild(marqueeNode.cloneNode(true))
     this.element.appendChild(overlayNode)
+
+    this.contentsTarget.classList.add("marquee-contents-hidden")
 
     setTimeout(() => {
       this.contentsTarget.classList.add("marquee-stopped")
@@ -58,6 +59,7 @@ export default class extends Controller {
           this.contentsTarget.classList.remove("marquee-stopped")
         })
       })
+      this.contentsTarget.classList.remove("marquee-contents-hidden")
     }, announceDuration * 900)
 
     setTimeout(() => {
@@ -77,5 +79,6 @@ export default class extends Controller {
     this.element.style.setProperty("--screen-width", this.element.offsetWidth)
     this.element.style.setProperty("--marquee-width", this.contentsTarget.offsetWidth)
     this.element.style.setProperty("--duration", this.data.get("duration"))
+    this.element.style.setProperty("--announce-duration", this.data.get("announceDuration"))
   }
 }

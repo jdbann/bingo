@@ -172,6 +172,13 @@
   animation-name: scroll-left;
   animation-timing-function: linear;
   padding-left: calc(var(--screen-width) * 1px);
+  transition: opacity calc(var(--announce-duration) * 0.1s) ease;
+}
+
+.marquee-contents-hidden {
+  @apply
+    opacity-0
+  ;
 }
 
 .marquee-stopped {
@@ -215,7 +222,6 @@
   @apply
     absolute
     top-0
-    bg-blue-500
     w-full
     opacity-0
   ;
