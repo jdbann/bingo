@@ -37,6 +37,7 @@ class CallsController < ApplicationController
 
   def destroy
     @call.destroy
+    RoundChannel.broadcast_to(@call.round, { id: @call.id, hidden: true })
     redirect_to @call.round, notice: "Call was successfully destroyed."
   end
 
