@@ -1,4 +1,4 @@
-<%= form_with(model: [call.round, call], url: round_calls_path(call.round), local: true) do |form| %>
+<%= form_with(model: call, url: url, local: true) do |form| %>
   <% if call.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(call.errors.count, "error") %> prohibited this call from being saved:</h2>

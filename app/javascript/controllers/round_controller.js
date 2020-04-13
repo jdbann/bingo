@@ -27,8 +27,11 @@ export default class extends Controller {
     if (data.hidden == true) {
       this.removeCall(data)
     } else {
-      if (this.callTargets.find(call => call.dataset.callId == data.id) == null) {
+      const call = this.callTargets.find(call => call.dataset.callId == data.id)
+      if (call == null) {
         this.addCall(data)
+      } else {
+        this.updateCall(call, data)
       }
     }
     this.updateCssVariables()
@@ -65,6 +68,10 @@ export default class extends Controller {
     setTimeout(() => {
       this.element.removeChild(overlayNode)
     }, announceDuration * 1000)
+  }
+
+  updateCall(call, { name }) {
+    call.innerHTML = name
   }
 
   removeCall({ id }) {
