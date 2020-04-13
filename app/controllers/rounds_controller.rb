@@ -25,6 +25,7 @@ class RoundsController < ApplicationController
 
   def update
     if @round.update(round_params)
+      RoundChannel.broadcast_to(@round, round: @round.attributes)
       redirect_to @round, notice: "Round was successfully updated."
     else
       render :edit

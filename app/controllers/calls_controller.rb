@@ -19,7 +19,7 @@ class CallsController < ApplicationController
     @call = round.calls.new(call_params)
 
     if @call.save
-      RoundChannel.broadcast_to(round, @call.attributes)
+      RoundChannel.broadcast_to(round, call: @call.attributes)
       redirect_to round, notice: "Call was successfully created."
     else
       render :new
@@ -28,7 +28,7 @@ class CallsController < ApplicationController
 
   def update
     if @call.update(call_params)
-      RoundChannel.broadcast_to(@call.round, @call.attributes)
+      RoundChannel.broadcast_to(@call.round, call: @call.attributes)
       redirect_to @call.round, notice: "Call was successfully updated."
     else
       render :edit
@@ -37,7 +37,7 @@ class CallsController < ApplicationController
 
   def destroy
     @call.destroy
-    RoundChannel.broadcast_to(@call.round, { id: @call.id, hidden: true })
+    RoundChannel.broadcast_to(@call.round, call: { id: @call.id, hidden: true })
     redirect_to @call.round, notice: "Call was successfully destroyed."
   end
 

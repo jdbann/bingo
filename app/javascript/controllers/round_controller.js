@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
 
 export default class extends Controller {
-  static targets = ['call', 'contents', 'list', 'status'];
+  static targets = ['call', 'contents', 'list', 'status', 'header', 'footer'];
 
   connect() {
     this.roundId = this.element.dataset.roundId
@@ -24,6 +24,15 @@ export default class extends Controller {
   }
 
   cableReceived(data) {
+    if (data.call != null) {
+      this.handleCall(data.call)
+    }
+    if (data.round != null) {
+      this.handleRound(data.round)
+    }
+  }
+
+  handleCall(data) {
     if (data.hidden == true) {
       this.removeCall(data)
     } else {
@@ -37,6 +46,11 @@ export default class extends Controller {
     this.updateCssVariables()
   }
 
+  handleRound({ header, footer }) {
+    this.headerTarget.innerHTML = header
+    this.footerTarget.innerHTML = footer
+  }
+
   addCall({ id, name }) {
     const announceDuration = parseFloat(this.data.get("announceDuration"))
     const textNode = document.createTextNode(name)
@@ -46,7 +60,6 @@ export default class extends Controller {
     marqueeNode.dataset.target = "round.call"
     marqueeNode.classList.add("marquee-item")
     marqueeNode.appendChild(textNode)
-    this.listTarget.appendChild(marqueeNode)
 
     const overlayNode = document.createElement("div")
     overlayNode.classList.add("marquee-overlay")
@@ -63,6 +76,7 @@ export default class extends Controller {
         })
       })
       this.contentsTarget.classList.remove("marquee-contents-hidden")
+      this.listTarget.appendChild(marqueeNode)
     }, announceDuration * 900)
 
     setTimeout(() => {

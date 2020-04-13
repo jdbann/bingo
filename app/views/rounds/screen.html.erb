@@ -1,12 +1,12 @@
 <%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": 20, "round-announce-duration": 5 }, class: "marquee" do %>
   <div data-target="round.status" class="marquee-item">Connecting</div>
   <div class="marquee-contents" data-target="round.contents">
-    <%= content_tag :div, @round.header, class: "marquee-item marquee-header" %>
+    <%= content_tag :div, @round.header, data: { target: "round.header" }, class: "marquee-item marquee-header" %>
     <div class="inline" data-target="round.list">
       <% @round.calls.visible.each do |call| %>
         <%= content_tag :div, call.name, data: { target: "round.call", "call-id": call.id }, class: "marquee-item" %>
       <% end %>
     </div>
-    <%= content_tag :div, @round.footer, class: "marquee-item marquee-footer" %>
+    <%= content_tag :div, @round.footer, data: { target: "round.footer" }, class: "marquee-item marquee-footer" %>
   </div>
 <% end %>
