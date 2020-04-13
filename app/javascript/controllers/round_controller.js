@@ -25,13 +25,7 @@ export default class extends Controller {
 
   cableReceived(data) {
     if (data.hidden == true) {
-      console.log(data)
-      this.callTargets.forEach(element => {
-        if (parseInt(element.dataset.callId) == data.id) {
-          console.log(element)
-          element.remove()
-        }
-      })
+      this.removeCall(data)
     } else {
       if (this.callTargets.find(call => call.dataset.callId == data.id) == null) {
         this.addCall(data)
@@ -48,6 +42,14 @@ export default class extends Controller {
     node.classList.add("marquee-item")
     node.appendChild(textNode)
     this.listTarget.appendChild(node)
+  }
+
+  removeCall({ id }) {
+    this.callTargets.forEach(element => {
+      if (parseInt(element.dataset.callId) == id) {
+        element.remove()
+      }
+    })
   }
 
   updateCssVariables() {
