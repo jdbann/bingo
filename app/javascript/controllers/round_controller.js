@@ -2,7 +2,7 @@ import { Controller } from "stimulus"
 import consumer from "../channels/consumer"
 
 export default class extends Controller {
-  static targets = ['call', 'list', 'status'];
+  static targets = ['call', 'contents', 'list', 'status'];
 
   connect() {
     this.roundId = this.element.dataset.roundId
@@ -75,7 +75,7 @@ export default class extends Controller {
 
   updateCssVariables() {
     this.element.style.setProperty("--screen-width", this.element.offsetWidth)
-    this.element.style.setProperty("--marquee-width", this.listTarget.offsetWidth)
+    this.element.style.setProperty("--marquee-width", this.contentsTarget.offsetWidth)
     this.element.style.setProperty("--duration", this.data.get("duration"))
   }
 }

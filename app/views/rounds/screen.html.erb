@@ -1,6 +1,6 @@
 <%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": 20, "round-announce-duration": 5 }, class: "marquee" do %>
   <div data-target="round.status" class="marquee-item">Connecting</div>
-  <div class="marquee-contents" data-target="round.list">
+  <div class="marquee-contents" data-target="round.contents">
     <%= content_tag :div, @round.header, class: "marquee-item marquee-header" %>
     <div class="inline" data-target="round.list">
       <% @round.calls.visible.each do |call| %>
