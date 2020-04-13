@@ -38,7 +38,7 @@ export default class extends Controller {
     const announceDuration = parseFloat(this.data.get("announceDuration"))
     const textNode = document.createTextNode(name)
 
-    const marqueeNode = document.createElement("li")
+    const marqueeNode = document.createElement("div")
     marqueeNode.dataset.callId = id
     marqueeNode.dataset.target = "round.call"
     marqueeNode.classList.add("marquee-item")
@@ -52,10 +52,10 @@ export default class extends Controller {
     this.element.appendChild(overlayNode)
 
     setTimeout(() => {
-      this.listTarget.classList.add("marquee-stopped")
+      this.contentsTarget.classList.add("marquee-stopped")
       window.requestAnimationFrame(() => {
         window.requestAnimationFrame(() => {
-          this.listTarget.classList.remove("marquee-stopped")
+          this.contentsTarget.classList.remove("marquee-stopped")
         })
       })
     }, announceDuration * 900)
