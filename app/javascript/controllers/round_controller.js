@@ -48,7 +48,7 @@ export default class extends Controller {
     const overlayNode = document.createElement("div")
     overlayNode.style.setProperty("--announce-duration", announceDuration)
     overlayNode.classList.add("marquee-overlay")
-    overlayNode.appendChild(marqueeNode)
+    overlayNode.appendChild(marqueeNode.cloneNode(true))
     this.element.appendChild(overlayNode)
 
     setTimeout(() => {
