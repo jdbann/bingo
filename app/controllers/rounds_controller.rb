@@ -25,6 +25,12 @@ class RoundsController < ApplicationController
 
   def update
     if @round.update(round_params)
+      if reset_calls_param
+        @round.calls.each do |call|
+          call.update(hidden: true)
+          RoundChannel.broadcast_to(@round, call: call.attributes)
+        end
+      end
       RoundChannel.broadcast_to(@round, round: @round.attributes)
       redirect_to @round, notice: "Round was successfully updated."
     else
@@ -50,5 +56,9 @@ class RoundsController < ApplicationController
 
   def round_params
     params.require(:round).permit(:name, :header, :footer)
+  end
+
+  def reset_calls_param
+    params[:round][:reset_calls]
   end
 end

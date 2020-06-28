@@ -121,11 +121,13 @@
 .submit {
   @apply
     bg-blue-500
-    text-white
     font-bold
-    py-2
+    inline-block
     px-4
+    py-2
     rounded
+    shadow
+    text-white
   ;
 
   &:hover {
@@ -139,6 +141,20 @@
     @apply
       outline-none
       shadow-outline
+    ;
+  }
+}
+
+.submit--secondary {
+  @apply
+    bg-white
+    border-gray-700
+    text-gray-700
+  ;
+
+  &:hover {
+    @apply
+      bg-gray-200
     ;
   }
 }

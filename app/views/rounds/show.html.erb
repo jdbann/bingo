@@ -54,5 +54,6 @@
 
   <div class="actions">
     <%= form.submit class: "submit" %>
+    <%= link_to "Reset calls", round_path(@round, params: { round: { reset_calls: true} }), method: :put, class: "submit submit--secondary" %>
   </div>
 <% end %>
