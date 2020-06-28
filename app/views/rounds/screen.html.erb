@@ -1,4 +1,4 @@
-<%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": 20, "round-announce-duration": 5 }, class: "marquee" do %>
+<%= content_tag :div, data: { controller: "round", "round-id": @round.id, "round-duration": round_duration, "round-announce-duration": 5 }, class: "marquee" do %>
   <div data-target="round.status" class="marquee-item">Connecting</div>
   <div class="marquee-contents" data-target="round.contents">
     <%= content_tag :div, @round.header, data: { target: "round.header" }, class: "marquee-item marquee-header" %>
