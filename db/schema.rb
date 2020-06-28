@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_13_082618) do
+ActiveRecord::Schema.define(version: 2020_06_28_125209) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,6 +24,15 @@ ActiveRecord::Schema.define(version: 2020_04_13_082618) do
     t.index ["round_id"], name: "index_calls_on_round_id"
   end
 
+  create_table "cards", force: :cascade do |t|
+    t.bigint "round_id", null: false
+    t.string "code", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["code"], name: "index_cards_on_code", unique: true
+    t.index ["round_id"], name: "index_cards_on_round_id"
+  end
+
   create_table "rounds", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", precision: 6, null: false
@@ -33,4 +42,5 @@ ActiveRecord::Schema.define(version: 2020_04_13_082618) do
   end
 
   add_foreign_key "calls", "rounds"
+  add_foreign_key "cards", "rounds"
 end

@@ -9,6 +9,18 @@
   ;
 }
 
+.nav-pill {
+  @apply
+    text-sm
+    rounded-full
+    py-1
+    px-3
+    mr-1
+    mb-3
+    shadow
+  ;
+}
+
 .row {
   @apply
     flex

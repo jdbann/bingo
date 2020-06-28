@@ -1,5 +1,10 @@
 <%= content_tag :h1, @round.name, class: "heading" %>
 
+<div class="mb-4">
+  <%= link_to "Dashboard", admin_round_path(@round), class: "nav-pill" %>
+  <%= link_to "Cards", admin_round_cards_path(@round), class: "nav-pill" %>
+</div>
+
 <div class="row row-collapsed hidden-sm">
   <div class="flex w-full">
     <span class="p-3">URL for OBS:</span>

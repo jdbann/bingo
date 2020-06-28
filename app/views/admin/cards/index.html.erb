@@ -1,0 +1,16 @@
+<%= content_tag :h1, "#{@round.name} Cards", class: "heading" %>
+
+<div class="mb-4">
+  <%= link_to "Dashboard", admin_round_path(@round), class: "nav-pill" %>
+  <%= link_to "Cards", admin_round_cards_path(@round), class: "nav-pill" %>
+</div>
+
+<% @round.cards.each do |card| %>
+  <div class="row">
+    <%= content_tag :span, card.code, class: "row-title p-3" %>
+  </div>
+<% end %>
+
+<div class="row row-muted">
+  <%= link_to "+ New Card", admin_round_cards_path(@round), method: :post, class: "row-title" %>
+</div>
