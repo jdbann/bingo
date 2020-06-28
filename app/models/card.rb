@@ -3,6 +3,10 @@ class Card < ApplicationRecord
 
   before_save :generate_code
 
+  def to_param
+    code
+  end
+
   private
 
   def generate_code

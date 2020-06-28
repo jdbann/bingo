@@ -16,4 +16,12 @@ RSpec.describe Card, type: :model do
       expect { card.save }.not_to change(card, :code)
     end
   end
+
+  describe "#to_param" do
+    it "returns code" do
+      round = Round.create(name: "Test Round")
+      card = round.cards.create
+      expect(card.to_param).to eq card.code
+    end
+  end
 end

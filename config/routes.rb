@@ -8,5 +8,7 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :cards, only: %i[index create show]
+
   root "admin/rounds#index"
 end

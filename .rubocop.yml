@@ -667,7 +667,7 @@ Rails/Validation:
 RSpec/ExampleLength:
   Enabled: true
   Exclude:
-    - spec/system/*
+    - spec/system/**/*
 
 RSpec/MultipleExpectations:
   Enabled: true
