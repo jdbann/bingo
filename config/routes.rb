@@ -1,9 +1,11 @@
 Rails.application.routes.draw do
-  resources :rounds do
-    resources :calls, shallow: true
+  namespace :admin do
+    resources :rounds do
+      resources :calls, shallow: true
 
-    get :screen, on: :member
+      get :screen, on: :member
+    end
   end
 
-  root "rounds#index"
+  root "admin/rounds#index"
 end

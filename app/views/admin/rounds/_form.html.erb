@@ -1,4 +1,4 @@
-<%= form_with(model: round, local: true) do |form| %>
+<%= form_with(model: [:admin, round], local: true) do |form| %>
   <% if round.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(round.errors.count, "error") %> prohibited this round from being saved:</h2>

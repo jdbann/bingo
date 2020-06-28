@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.describe "ManageRounds", type: :system do
   it "allows you to create rounds" do
-    visit rounds_path
+    visit admin_rounds_path
     click_on "New Round"
     fill_in "Name", with: "Test Round"
     fill_in "Header", with: "#ServoBingo"
@@ -23,7 +23,7 @@ RSpec.describe "ManageRounds", type: :system do
       round: round,
       hidden: false
     )
-    visit round_path(round)
+    visit admin_round_path(round)
     click_on "Reset calls"
     expect(hidden_call.reload).to be_hidden
     expect(visible_call.reload).to be_hidden

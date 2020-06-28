@@ -3,7 +3,7 @@
 <div class="row row-collapsed hidden-sm">
   <div class="flex w-full">
     <span class="p-3">URL for OBS:</span>
-    <pre class="p-3 bg-gray-200 flex-1 border-l"><%= screen_round_url @round %></pre>
+    <pre class="p-3 bg-gray-200 flex-1 border-l"><%= screen_admin_round_url @round %></pre>
   </div>
 </div>
 
@@ -11,25 +11,25 @@
 
 <% @round.calls.order(:name).each do |call| %>
   <%= content_tag :div, id: "call-#{call.id}", class: "row #{"row-muted" if call.hidden}" do %>
-    <%= link_to call_path(call, call: { hidden: !call.hidden }), method: :put, class: "row-title" do %>
+    <%= link_to admin_call_path(call, call: { hidden: !call.hidden }), method: :put, class: "row-title" do %>
       <%= call.name %>
       <%= content_tag :span, (call.hidden ? "Show" : "Hide"), class: "row-detail" %>
     <% end %>
 
     <div>
-      <%= link_to 'Edit', edit_call_path(call), class: "row-button row-button-edit" %>
-      <%= link_to 'Delete', call, method: :delete, data: { confirm: 'Are you sure?' }, class: "row-button row-button-delete" %>
+      <%= link_to 'Edit', edit_admin_call_path(call), class: "row-button row-button-edit" %>
+      <%= link_to 'Delete', [:admin, call], method: :delete, data: { confirm: 'Are you sure?' }, class: "row-button row-button-delete" %>
     </div>
   <% end %>
 <% end %>
 
 <div class="row row-muted">
-  <%= link_to "+ New Call", new_round_call_path(@round), class: "row-title" %>
+  <%= link_to "+ New Call", new_admin_round_call_path(@round), class: "row-title" %>
 </div>
 
 <hr class="my-4"/>
 
-<%= form_with(model: @round, local: true) do |form| %>
+<%= form_with(model: [:admin, @round], local: true) do |form| %>
   <% if @round.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@round.errors.count, "error") %> prohibited this round from being saved:</h2>
@@ -54,6 +54,6 @@
 
   <div class="actions">
     <%= form.submit class: "submit" %>
-    <%= link_to "Reset calls", round_path(@round, params: { round: { reset_calls: true} }), method: :put, class: "submit submit--secondary" %>
+    <%= link_to "Reset calls", admin_round_path(@round, params: { round: { reset_calls: true} }), method: :put, class: "submit submit--secondary" %>
   </div>
 <% end %>
