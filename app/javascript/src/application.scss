@@ -270,3 +270,35 @@
     display: inherit;
   }
 }
+
+.card__call {
+  @apply
+    rounded-lg
+    shadow
+    p-4
+    text-center
+    flex
+    items-center
+    justify-center
+    h-48
+    cursor-pointer
+  ;
+
+  &:hover {
+    @apply
+      bg-gray-200
+    ;
+  }
+}
+
+.card__call--marked {
+  @apply
+    bg-red-500
+  ;
+
+  &:hover {
+    @apply
+      bg-red-700
+    ;
+  }
+}

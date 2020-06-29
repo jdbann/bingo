@@ -9,4 +9,13 @@ RSpec.describe "ViewCards", type: :system do
     click_on "Play"
     expect(page).to have_content card.code
   end
+
+  it "allows a player to mark calls on a card" do
+    round = Round.create(name: "Test Round")
+    call = Call.create(name: "Test Call", round: round)
+    card = round.cards.create
+    visit card_path(card)
+    find("[data-call-id='#{call.id}']").click
+    expect(page).to have_css("[data-marked='true']")
+  end
 end

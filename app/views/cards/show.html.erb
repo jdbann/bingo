@@ -1,9 +1,9 @@
 <%= @card.code %>
 
-<div class="grid grid-cols-3 gap-4">
+<%= content_tag :div, class: "grid grid-cols-3 gap-4", data: { controller: "card", "card-code": @card.code } do %>
   <% @card.card_calls.each do |call| %>
-    <div class="rounded-lg shadow p-4 text-center flex items-center justify-center h-48 hover:bg-gray-200 cursor-pointer">
+    <%= content_tag :div, class: "card__call #{"card__call--marked" if call.marked}", data: { call_id: call.call.id, marked: call.marked, target: "card.call", action: "click->card#toggleMark" } do %>
       <%= call.call.name %>
-    </div>
+    <% end %>
   <% end %>
-</div>
+<% end %>
