@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_28_125209) do
+ActiveRecord::Schema.define(version: 2020_06_28_133845) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(version: 2020_06_28_125209) do
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "hidden", default: true
     t.index ["round_id"], name: "index_calls_on_round_id"
+  end
+
+  create_table "card_calls", force: :cascade do |t|
+    t.bigint "card_id", null: false
+    t.bigint "call_id", null: false
+    t.boolean "marked", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["call_id"], name: "index_card_calls_on_call_id"
+    t.index ["card_id"], name: "index_card_calls_on_card_id"
   end
 
   create_table "cards", force: :cascade do |t|
@@ -42,5 +52,7 @@ ActiveRecord::Schema.define(version: 2020_06_28_125209) do
   end
 
   add_foreign_key "calls", "rounds"
+  add_foreign_key "card_calls", "calls"
+  add_foreign_key "card_calls", "cards"
   add_foreign_key "cards", "rounds"
 end

@@ -15,6 +15,13 @@ RSpec.describe Card, type: :model do
       card = round.cards.new(code: "horses")
       expect { card.save }.not_to change(card, :code)
     end
+
+    it "associates a random sample of the round's calls" do
+      round = Round.create(name: "Test Round")
+      10.times { |index| round.calls.create(name: "Call #{index}") }
+      card = round.cards.create
+      expect(card.calls.size).to eq 9
+    end
   end
 
   describe "#to_param" do

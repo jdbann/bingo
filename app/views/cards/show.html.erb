@@ -1,1 +1,9 @@
 <%= @card.code %>
+
+<div class="grid grid-cols-3 gap-4">
+  <% @card.card_calls.each do |call| %>
+    <div class="rounded-lg shadow p-4 text-center flex items-center justify-center h-48 hover:bg-gray-200 cursor-pointer">
+      <%= call.call.name %>
+    </div>
+  <% end %>
+</div>
