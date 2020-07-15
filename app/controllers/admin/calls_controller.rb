@@ -45,7 +45,7 @@ module Admin
         @call.round,
         call: { id: @call.id, hidden: true }
       )
-      redirect_to @call.round, notice: "Call was successfully destroyed."
+      redirect_to [:admin, @call.round], notice: "Call was successfully destroyed."
     end
 
     private
